@@ -1,7 +1,6 @@
 {
-    "extends": "stylelint-config-standard-scss",
-    "rules": {
-        "scss/double-slash-comment-whitespace-inside": null
-    }
-
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "scss/double-slash-comment-whitespace-inside": null
+  }
 }

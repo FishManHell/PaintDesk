@@ -1,0 +1,20 @@
+.desk-nav {
+  height: 50px;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+}
+
+.desk-body {
+  display: flex;
+  width: 100%;
+  height: calc(100vh - var(--layout-offset));
+}
+
+.desk-resize-wrapper {
+  width: calc(100% - var(--tools-menu-width));
+}

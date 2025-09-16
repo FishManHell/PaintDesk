@@ -1,0 +1,13 @@
+:root {
+  //SIZES
+  --navbar-height: 50px;
+  --tools-menu-width: 140px;
+
+  //MARGINS
+  --global-margin: 20px;
+
+  //CALC
+  --layout-offset: calc(
+    var(--navbar-height) + 2px + var(--global-margin) * 2
+  ); // fix it later
+}

@@ -1,0 +1,5 @@
+.wrapper {
+  margin: var(--global-margin);
+  border: 1px solid;
+  height: calc(100vh - var(--global-margin) * 2);
+}

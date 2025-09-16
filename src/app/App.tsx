@@ -1,3 +1,10 @@
+import { Container } from "shared/ui/Container";
+import { PaintDeskPage } from "pages/PaintDeskPage";
+
 export const App = () => {
-  return <div className={"app"}>Hello</div>;
+  return (
+    <Container className={"app"}>
+      <PaintDeskPage />
+    </Container>
+  );
 };

@@ -1,0 +1,14 @@
+.tools-menu {
+  width: var(--tools-menu-width);
+  border-inline-end: #000 1px solid;
+}
+
+.menu {
+  border-inline-end: none;
+
+  :global(.ant-menu-item) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

@@ -18,8 +18,7 @@ export const Navbar = Reactive((props: NavbarProps) => {
     undo: () => drawingStore.undo(),
     redo: () => drawingStore.redo(),
     clear: () => drawingStore.reset(),
-    zoomIn: () => zoomStore.zoomIn(),
-    zoomOut: () => zoomStore.zoomOut(),
+    zoom: () => zoomStore.toggleZoomMode(),
   };
 
   const onChangeComplete = (num: number) => (strokeStore.width = num);

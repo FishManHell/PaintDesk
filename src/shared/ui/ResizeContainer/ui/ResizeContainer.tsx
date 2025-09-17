@@ -7,13 +7,7 @@ import { ResizeContainerProps } from "../model/types/resizeContainerProps";
 const isStorybook = __PROJECT__ === "storybook";
 
 export const ResizeContainer: FC<ResizeContainerProps> = (props) => {
-  const {
-    className,
-    children,
-    storybookSizes,
-    renderContent,
-    ...useResizeProps
-  } = props;
+  const { className, children, storybookSizes, ...useResizeProps } = props;
 
   const containerRef = useRef<HTMLDivElement | null>(null);
   const originalSize = useRef<{ width: number; height: number } | null>(null);

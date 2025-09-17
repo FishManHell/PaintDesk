@@ -2,9 +2,8 @@ import { CustomColorPicker } from "widgets/CustomColorPicker";
 import {
   ClearOutlined,
   RedoOutlined,
+  SearchOutlined,
   UndoOutlined,
-  ZoomInOutlined,
-  ZoomOutOutlined,
 } from "@ant-design/icons";
 import { MenuProps } from "antd";
 
@@ -14,12 +13,9 @@ export const items: MenuProps["items"] = [
     label: <CustomColorPicker />,
   },
   {
-    key: "zoomIn",
-    icon: <ZoomInOutlined />,
-  },
-  {
-    key: "zoomOut",
-    icon: <ZoomOutOutlined />,
+    key: "zoom",
+    label: "Zoom",
+    icon: <SearchOutlined />,
   },
   {
     key: "undo",

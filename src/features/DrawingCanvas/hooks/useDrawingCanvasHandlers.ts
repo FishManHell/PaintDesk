@@ -2,10 +2,10 @@ import { useStore } from "app/providers/MobXProvider";
 import { useThrottleCallback } from "shared/lib/hooks";
 import Konva from "konva";
 import { useCallback } from "react";
-import { CanvasLayerMouseHandlers } from "shared/types";
+import { CanvasLayerHandlers } from "shared/types";
 import { zoomStore } from "entities/Zoom";
 
-type UseDrawingCanvasHandlers = () => CanvasLayerMouseHandlers;
+type UseDrawingCanvasHandlers = () => CanvasLayerHandlers;
 
 export const useDrawingCanvasHandlers: UseDrawingCanvasHandlers = () => {
   const { drawingStore } = useStore();
@@ -28,18 +28,16 @@ export const useDrawingCanvasHandlers: UseDrawingCanvasHandlers = () => {
 
   const onMouseDown = useCallback(
     (e: Konva.KonvaEventObject<MouseEvent>) => {
-      if (e.evt.button === 0) {
-        const stage = e.target.getStage();
-        if (!stage) return;
+      const stage = e.target.getStage();
+      if (!stage) return;
 
-        const point = getNormalizedPointer(stage);
-        if (!point) return;
+      const point = getNormalizedPointer(stage);
+      if (!point) return;
 
-        drawingStore.save();
+      drawingStore.save();
 
-        drawingStore.onDrawingToggle(true);
-        drawingStore.add(point);
-      }
+      drawingStore.onDrawingToggle(true);
+      drawingStore.add(point);
     },
     [getNormalizedPointer, drawingStore],
   );
@@ -62,5 +60,18 @@ export const useDrawingCanvasHandlers: UseDrawingCanvasHandlers = () => {
     [drawingStore],
   );
 
-  return { onMouseDown, onMouseMove, onMouseUp };
+  const onWheelZoom = (
+    event: Konva.KonvaEventObject<WheelEvent>,
+    direction: number,
+  ) => {
+    const stage = event.target.getStage();
+    if (!stage) return;
+
+    const pointer = stage.getPointerPosition();
+    if (!pointer) return;
+
+    zoomStore.setZoom(pointer, direction);
+  };
+
+  return { onMouseDown, onMouseMove, onMouseUp, onWheelZoom };
 };

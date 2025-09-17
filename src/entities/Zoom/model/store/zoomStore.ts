@@ -10,30 +10,20 @@ export class ZoomStore {
     origWidth: 0,
     origHeight: 0,
   };
+  _isZoomMode: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  centerView(newScale: number = this._scale) {
-    const center = this.getVisibleCenter();
-    const { origHeight, origWidth } = this._controlSize;
-    this.position = {
-      x: center.x - (origWidth / 2) * newScale,
-      y: center.y - (origHeight / 2) * newScale,
-    };
-    this._scale = newScale;
+  set isZoomMode(value: boolean) {
+    this._isZoomMode = value;
   }
-
-  zoomIn(pointer?: Position) {
-    this.setZoom(pointer ?? this.getVisibleCenter(), 1.2);
+  get isZoomMode() {
+    return this._isZoomMode;
   }
-
-  zoomOut() {
-    if (this._scale > 1) {
-      const newScale = this._scale / 1.2;
-      this.centerView(newScale);
-    }
+  toggleZoomMode() {
+    this._isZoomMode = !this._isZoomMode;
   }
 
   set stageSize(sizes: ControlSize) {
@@ -59,27 +49,20 @@ export class ZoomStore {
     return this._scale * this.resizeScale;
   }
 
-  private getVisibleCenter(): Position {
-    return {
-      x: this._controlSize.width / 2,
-      y: this._controlSize.height / 2,
-    };
-  }
-
-  private setZoom(center: Position, scaleBy: number) {
+  public setZoom(pointer: Position, scaleBy: number) {
     const oldScale = this._scale;
     const newScale = oldScale * scaleBy;
 
     const mousePointTo = {
-      x: (center.x - this._position.x) / oldScale,
-      y: (center.y - this._position.y) / oldScale,
+      x: (pointer.x - this._position.x) / oldScale,
+      y: (pointer.y - this._position.y) / oldScale,
     };
 
     this._scale = newScale;
 
     this._position = {
-      x: center.x - mousePointTo.x * newScale,
-      y: center.y - mousePointTo.y * newScale,
+      x: pointer.x - mousePointTo.x * newScale,
+      y: pointer.y - mousePointTo.y * newScale,
     };
   }
 

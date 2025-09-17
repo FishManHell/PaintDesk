@@ -8,7 +8,8 @@ import { useEffect } from "react";
 
 export const DrawingCanvas = Reactive(() => {
   const { drawingStore, zoomStore } = useStore();
-  const { onMouseUp, onMouseMove, onMouseDown } = useDrawingCanvasHandlers();
+  const { onMouseUp, onMouseMove, onMouseDown, onWheelZoom } =
+    useDrawingCanvasHandlers();
 
   return (
     <MobXResizeContainer refreshMode="throttle" refreshRate={200}>
@@ -27,6 +28,7 @@ export const DrawingCanvas = Reactive(() => {
             onMouseDown={onMouseDown}
             onMouseMove={onMouseMove}
             onMouseUp={onMouseUp}
+            onWheelZoom={onWheelZoom}
           >
             {drawingStore.shapes.map((shape) => (
               <MobXKonvaShape key={shape.id} shape={shape} />

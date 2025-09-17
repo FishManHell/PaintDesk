@@ -20,5 +20,4 @@ export interface ResizeContainerProps
     origWidth,
     origHeight,
   }: ChildrenProps) => ReactNode;
-  renderContent?: (width: number, height: number) => ReactNode;
 }

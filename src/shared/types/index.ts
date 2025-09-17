@@ -1,4 +1,4 @@
 import { DefaultStorybookSizes } from "./storybook/defaultSizes";
-import { CanvasLayerMouseHandlers } from "./canvasLayerMouseHandlers/canvasLayerMouseHandlers";
+import { CanvasLayerHandlers } from "./canvasLayerMouseHandlers/canvasLayerHandlers";
 
-export { DefaultStorybookSizes, CanvasLayerMouseHandlers };
+export { DefaultStorybookSizes, CanvasLayerHandlers };

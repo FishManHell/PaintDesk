@@ -4,23 +4,20 @@
 
 .navbar-menu {
   height: 100%;
+
+  .ant-menu-item {
+    line-height: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
 }
 
-.ant-menu-item {
-  line-height: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.ant-menu-horizontal {
+.navbar-menu.ant-menu-horizontal {
   border-bottom: 1px solid;
 }
 
-.ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
-.ant-menu-light.ant-menu-horizontal > .ant-menu-submenu::after {
+.navbar-menu.ant-menu-light.ant-menu-horizontal > .ant-menu-item::after,
+.navbar-menu.ant-menu-light.ant-menu-horizontal > .ant-menu-submenu::after {
   border-bottom: none;
-}
-
-.ant-menu-horizontal .ant-menu-item {
-  padding: 0;
 }

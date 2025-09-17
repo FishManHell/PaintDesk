@@ -1,4 +1,4 @@
-import { Circle, Line, Rect, RegularPolygon } from "react-konva";
+import { Line, Rect, Ellipse } from "react-konva";
 import { Reactive } from "shared/ui/Reactive";
 import { KonvaShapeProps } from "../model/types/konvaShapeProps";
 
@@ -30,23 +30,29 @@ export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
       );
     case "circle":
       return (
-        <Circle
-          x={shape.x}
-          y={shape.y}
-          radius={shape.radius}
-          stroke={stroke}
-          strokeWidth={strokeWidth}
+        <Ellipse
+          x={shape.x + shape.width / 2}
+          y={shape.y + shape.height / 2}
+          radiusX={Math.abs(shape.width) / 2}
+          radiusY={Math.abs(shape.height) / 2}
+          stroke={shape.stroke}
+          strokeWidth={shape.strokeWidth}
         />
       );
     case "triangle":
       return (
-        <RegularPolygon
-          x={shape.x}
-          y={shape.y}
-          radius={shape.radius}
-          sides={3}
-          stroke={stroke}
-          strokeWidth={strokeWidth}
+        <Line
+          points={[
+            shape.x,
+            shape.y + shape.height,
+            shape.x + shape.width,
+            shape.y + shape.height,
+            shape.x + shape.width / 2,
+            shape.y,
+          ]}
+          closed
+          stroke={shape.stroke}
+          strokeWidth={shape.strokeWidth}
         />
       );
     default:

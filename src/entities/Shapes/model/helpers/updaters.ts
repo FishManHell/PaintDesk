@@ -13,10 +13,12 @@ export const updaters: ShapeUpdaterType = {
     shape.height = y - shape.y;
   },
   circle: (shape, x, y) => {
-    shape.radius = Math.hypot(x - shape.x, y - shape.y);
+    shape.width = x - shape.x;
+    shape.height = y - shape.y;
   },
   triangle: (shape, x, y) => {
-    shape.radius = Math.hypot(x - shape.x, y - shape.y);
+    shape.width = x - shape.x;
+    shape.height = y - shape.y;
   },
 };
 

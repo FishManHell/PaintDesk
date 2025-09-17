@@ -1,9 +1,5 @@
-import { BaseShape } from "./base";
+import { BaseShape, BoundingBox } from "./base";
 
-export interface Rect extends BaseShape {
+export interface Rect extends BaseShape, BoundingBox {
   type: "rect";
-  x: number;
-  y: number;
-  width: number;
-  height: number;
 }

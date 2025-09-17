@@ -39,7 +39,8 @@ export const factory: ShapeFactoryType = {
       type: "circle",
       x,
       y,
-      radius: 0,
+      width: 0,
+      height: 0,
       stroke: strokeStore._color,
       strokeWidth: strokeStore._width,
     };
@@ -50,7 +51,8 @@ export const factory: ShapeFactoryType = {
       type: "triangle",
       x,
       y,
-      radius: 0,
+      width: 0,
+      height: 0,
       stroke: strokeStore._color,
       strokeWidth: strokeStore._width,
     };

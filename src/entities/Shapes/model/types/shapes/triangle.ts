@@ -1,8 +1,5 @@
-import { BaseShape } from "./base";
+import { BaseShape, BoundingBox } from "./base";
 
-export interface Triangle extends BaseShape {
+export interface Triangle extends BaseShape, BoundingBox {
   type: "triangle";
-  x: number;
-  y: number;
-  radius: number;
 }

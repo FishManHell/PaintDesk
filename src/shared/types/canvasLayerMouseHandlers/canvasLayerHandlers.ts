@@ -8,4 +8,5 @@ export interface CanvasLayerHandlers {
     e: Konva.KonvaEventObject<WheelEvent>,
     direction: number,
   ) => void;
+  throttledDragMove: (e: Konva.KonvaEventObject<DragEvent>) => void;
 }

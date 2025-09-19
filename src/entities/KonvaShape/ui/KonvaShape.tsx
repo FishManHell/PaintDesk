@@ -2,7 +2,8 @@ import { Line, Rect, Ellipse } from "react-konva";
 import { Reactive } from "shared/ui/Reactive";
 import { KonvaShapeProps } from "../model/types/konvaShapeProps";
 
-export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
+export const KonvaShape = Reactive((props: KonvaShapeProps) => {
+  const { shape, onDragEnd, onMouseUp, onMouseDown } = props;
   const { stroke, strokeWidth, type } = shape;
 
   switch (type) {
@@ -15,6 +16,9 @@ export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
           strokeWidth={strokeWidth}
           lineCap="round"
           lineJoin="round"
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          onDragEnd={onDragEnd}
         />
       );
     case "rect":
@@ -26,6 +30,9 @@ export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
           height={shape.height}
           stroke={stroke}
           strokeWidth={strokeWidth}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          onDragEnd={onDragEnd}
         />
       );
     case "circle":
@@ -37,6 +44,9 @@ export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
           radiusY={Math.abs(shape.height) / 2}
           stroke={shape.stroke}
           strokeWidth={shape.strokeWidth}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          onDragEnd={onDragEnd}
         />
       );
     case "triangle":
@@ -53,6 +63,9 @@ export const KonvaShape = Reactive(({ shape }: KonvaShapeProps) => {
           closed
           stroke={shape.stroke}
           strokeWidth={shape.strokeWidth}
+          onMouseDown={onMouseDown}
+          onMouseUp={onMouseUp}
+          onDragEnd={onDragEnd}
         />
       );
     default:

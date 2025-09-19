@@ -5,14 +5,12 @@ import { useCallback } from "react";
 import { CanvasLayerHandlers } from "shared/types";
 import { zoomStore } from "entities/Zoom";
 
-type UseDrawingCanvasHandlers = () => CanvasLayerHandlers;
-
-export const useDrawingCanvasHandlers: UseDrawingCanvasHandlers = () => {
+export const useDrawingCanvasHandlers = (): CanvasLayerHandlers => {
   const { drawingStore } = useStore();
 
   const throttledUpdateLastShape = useThrottleCallback(
     (point: { x: number; y: number }) => drawingStore.update(point),
-    16,
+    16, // ~60fps
   );
 
   const getNormalizedPointer = (stage: Konva.Stage) => {
@@ -73,5 +71,19 @@ export const useDrawingCanvasHandlers: UseDrawingCanvasHandlers = () => {
     zoomStore.setZoom(pointer, direction);
   };
 
-  return { onMouseDown, onMouseMove, onMouseUp, onWheelZoom };
+  const throttledDragMove = useThrottleCallback(
+    (e: Konva.KonvaEventObject<DragEvent>) => {
+      const stage = e.target;
+      zoomStore.position = { x: stage.x(), y: stage.y() };
+    },
+    32, // 30fps
+  );
+
+  return {
+    onMouseDown,
+    onMouseMove,
+    onMouseUp,
+    onWheelZoom,
+    throttledDragMove,
+  };
 };

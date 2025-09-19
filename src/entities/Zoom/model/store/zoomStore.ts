@@ -16,9 +16,6 @@ export class ZoomStore {
     makeAutoObservable(this);
   }
 
-  set isZoomMode(value: boolean) {
-    this._isZoomMode = value;
-  }
   get isZoomMode() {
     return this._isZoomMode;
   }

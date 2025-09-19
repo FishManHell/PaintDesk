@@ -1,6 +1,7 @@
 import { CustomColorPicker } from "widgets/CustomColorPicker";
 import {
   ClearOutlined,
+  DragOutlined,
   RedoOutlined,
   SearchOutlined,
   UndoOutlined,
@@ -16,6 +17,11 @@ export const items: MenuProps["items"] = [
     key: "zoom",
     label: "Zoom",
     icon: <SearchOutlined />,
+  },
+  {
+    key: "drag",
+    label: "Drag",
+    icon: <DragOutlined />,
   },
   {
     key: "undo",

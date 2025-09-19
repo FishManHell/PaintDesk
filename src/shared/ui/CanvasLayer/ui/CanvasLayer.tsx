@@ -5,6 +5,8 @@ import { CanvasLayerHandlers } from "shared/types";
 import { useStore } from "app/providers/MobXProvider";
 import { Reactive } from "shared/ui/Reactive";
 
+const MIN_SCALE = 1;
+
 interface CanvasLayer extends CanvasLayerHandlers {
   width: number;
   height: number;
@@ -19,11 +21,13 @@ export const CanvasLayer = Reactive((props: CanvasLayer) => {
     onMouseUp,
     onMouseDown,
     onWheelZoom,
+    throttledDragMove,
     children,
   } = props;
-  const { zoomStore } = useStore();
+  const { zoomStore, dragStore } = useStore();
 
   const stageRef = useRef<Konva.Stage | null>(null);
+  const isMiddleButtonDrag = useRef<boolean | null>(null);
 
   const setCursor = (cursor: string) => {
     const stage = stageRef.current;
@@ -38,25 +42,33 @@ export const CanvasLayer = Reactive((props: CanvasLayer) => {
     if (isZoomDrag) {
       stage?.draggable(true);
       setCursor("grab");
+      isMiddleButtonDrag.current = true;
     } else {
       stage?.draggable(false);
       setCursor("default");
-      if (e.evt.button === 0) onMouseDown(e);
+      isMiddleButtonDrag.current = false;
+      if (!dragStore._isDragging && e.evt.button === 0) onMouseDown(e);
     }
   };
 
   const handleMouseUp = (e: Konva.KonvaEventObject<MouseEvent>) => {
     const stage = stageRef.current;
+    isMiddleButtonDrag.current = false;
     stage?.draggable(false);
-    onMouseUp();
+    if (!dragStore._isDragging) onMouseUp();
     if (e.evt.button === 1 && zoomStore._scale > 1) {
       setCursor("default");
     }
   };
 
+  const handleOnMouseMove = (e: Konva.KonvaEventObject<MouseEvent>) => {
+    if (dragStore._isDragging) return;
+    onMouseMove(e);
+  };
+
   const handleDragMove = (e: Konva.KonvaEventObject<DragEvent>) => {
-    const stage = e.target as Konva.Stage;
-    zoomStore.position = { x: stage.x(), y: stage.y() };
+    if (!isMiddleButtonDrag.current) return;
+    throttledDragMove(e);
   };
 
   const onWheel = (e: Konva.KonvaEventObject<WheelEvent>) => {
@@ -65,10 +77,12 @@ export const CanvasLayer = Reactive((props: CanvasLayer) => {
 
     const scaleBy = 1.05;
     const direction = e.evt.deltaY > 0 ? 1 / scaleBy : scaleBy;
-    const newScale = zoomStore._scale * direction;
-    if (newScale < 1) return;
-    setCursor(direction > 1 ? "zoom-in" : "zoom-out");
 
+    if (zoomStore._scale <= MIN_SCALE && direction < 1) {
+      setCursor("default");
+      return;
+    }
+    setCursor(direction > 1 ? "zoom-in" : "zoom-out");
     onWheelZoom(e, direction);
   };
 
@@ -81,7 +95,7 @@ export const CanvasLayer = Reactive((props: CanvasLayer) => {
     x: zoomStore._position.x,
     y: zoomStore._position.y,
     onMouseDown: handleMouseDown,
-    onMouseMove,
+    onMouseMove: handleOnMouseMove,
     onMouseUp: handleMouseUp,
     onDragMove: handleDragMove,
     onWheel,

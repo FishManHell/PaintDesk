@@ -12,13 +12,14 @@ interface NavbarProps {
 
 export const Navbar = Reactive((props: NavbarProps) => {
   const { className } = props;
-  const { drawingStore, zoomStore, strokeStore } = useStore();
+  const { drawingStore, zoomStore, strokeStore, dragStore } = useStore();
 
   const handlers: Record<string, () => void> = {
     undo: () => drawingStore.undo(),
     redo: () => drawingStore.redo(),
     clear: () => drawingStore.reset(),
     zoom: () => zoomStore.toggleZoomMode(),
+    drag: () => dragStore.toggle(),
   };
 
   const onChangeComplete = (num: number) => (strokeStore.width = num);

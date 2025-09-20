@@ -6,10 +6,25 @@
   height: 100%;
 
   .ant-menu-item {
-    line-height: 0;
+    text-align: center;
+    min-width: 80px;
     padding: 0;
-    display: flex;
-    align-items: center;
+    line-height: normal;
+  }
+
+  .ant-menu-item-selected {
+    font-weight: 600;
+    border-radius: 10px;
+  }
+
+  .ant-menu-item-selected[data-menu-id$="-zoom"] {
+    background-color: #f6ffed;
+    color: #52c41a;
+  }
+
+  .ant-menu-item-selected[data-menu-id$="-drag"] {
+    background-color: #fff7e6;
+    color: #fa8c16;
   }
 }
 

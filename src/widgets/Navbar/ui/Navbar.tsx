@@ -4,7 +4,6 @@ import { Menu } from "antd";
 import { Reactive } from "shared/ui/Reactive";
 import { useStore } from "app/providers/MobXProvider";
 import { items } from "../model/items";
-import { StrokeWidthSlider } from "widgets/StrokeWidthSlider";
 
 interface NavbarProps {
   className?: string;
@@ -12,7 +11,7 @@ interface NavbarProps {
 
 export const Navbar = Reactive((props: NavbarProps) => {
   const { className } = props;
-  const { drawingStore, zoomStore, strokeStore, dragStore } = useStore();
+  const { drawingStore, zoomStore, dragStore } = useStore();
 
   const handlers: Record<string, () => void> = {
     undo: () => drawingStore.undo(),
@@ -22,8 +21,6 @@ export const Navbar = Reactive((props: NavbarProps) => {
     drag: () => dragStore.toggle(),
   };
 
-  const onChangeComplete = (num: number) => (strokeStore.width = num);
-
   return (
     <nav className={classNames("navbar", className)}>
       <Menu
@@ -31,11 +28,10 @@ export const Navbar = Reactive((props: NavbarProps) => {
         items={items}
         className={"navbar-menu"}
         onClick={(e) => handlers[e.key] && handlers[e.key]()}
-      />
-      <StrokeWidthSlider
-        className={"navbar-stroke-slider"}
-        onChangeComplete={onChangeComplete}
-        tooltip={{ formatter: (v) => `${v}px` }}
+        selectedKeys={[
+          ...(zoomStore._isZoomMode ? ["zoom"] : []),
+          ...(dragStore._isDragging ? ["drag"] : []),
+        ]}
       />
     </nav>
   );

@@ -10,10 +10,6 @@ import { MenuProps } from "antd";
 
 export const items: MenuProps["items"] = [
   {
-    key: "colorPicker",
-    label: <CustomColorPicker />,
-  },
-  {
     key: "zoom",
     label: "Zoom",
     icon: <SearchOutlined />,
@@ -37,5 +33,9 @@ export const items: MenuProps["items"] = [
     key: "clear",
     label: "Clear",
     icon: <ClearOutlined />,
+  },
+  {
+    key: "colorPicker",
+    label: <CustomColorPicker />,
   },
 ];

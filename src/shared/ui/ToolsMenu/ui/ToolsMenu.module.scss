@@ -1,4 +1,8 @@
 .tools-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   width: var(--tools-menu-width);
   border-inline-end: #000 1px solid;
 }
@@ -10,5 +14,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+  }
+}
+
+.tools-menu-stroke-slider-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+
+  .stroke-slider-text {
+    margin-bottom: 15px;
   }
 }

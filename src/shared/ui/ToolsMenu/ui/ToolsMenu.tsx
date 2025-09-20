@@ -30,7 +30,7 @@ export const ToolsMenu = Reactive((props: ToolsMenuProps) => {
 
       <div className={cls["tools-menu-stroke-slider-wrapper"]}>
         <Tag color={"red"} className={cls["stroke-slider-text"]}>
-          Stroke Width
+          Stroke Width: {strokeStore._width}px
         </Tag>
         <StrokeWidthSlider
           className={cls["stroke-slider"]}

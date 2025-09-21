@@ -1,4 +1,4 @@
-import cls from "./ToolsMenu.module.scss";
+import cls from "./Sidebar.module.scss";
 import classNames from "classnames";
 import { Reactive } from "shared/ui/Reactive";
 import { useStore } from "app/providers/MobXProvider";
@@ -11,14 +11,14 @@ interface ToolsMenuProps {
   className?: string;
 }
 
-export const ToolsMenu = Reactive((props: ToolsMenuProps) => {
+export const Sidebar = Reactive((props: ToolsMenuProps) => {
   const { className } = props;
   const { selectTool, strokeStore } = useStore();
 
   const onChangeComplete = (num: number) => (strokeStore.width = num);
 
   return (
-    <div className={classNames(cls["tools-menu"], className)}>
+    <div className={classNames(cls["sidebar-menu"], className)}>
       <Menu
         style={{ borderInlineEnd: "none" }}
         className={cls["menu"]}
@@ -28,7 +28,7 @@ export const ToolsMenu = Reactive((props: ToolsMenuProps) => {
         items={toolMenuItems}
       />
 
-      <div className={cls["tools-menu-stroke-slider-wrapper"]}>
+      <div className={cls["sidebar-menu-stroke-slider-wrapper"]}>
         <Tag color={"red"} className={cls["stroke-slider-text"]}>
           Stroke Width: {strokeStore._width}px
         </Tag>

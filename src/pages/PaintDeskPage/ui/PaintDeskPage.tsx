@@ -1,6 +1,6 @@
 import cls from "./PaintDeskPage.module.scss";
 import classNames from "classnames";
-import { ToolsMenu } from "shared/ui/ToolsMenu";
+import { Sidebar } from "shared/ui/Sidebar";
 import { Navbar } from "widgets/Navbar/ui/Navbar";
 import { DrawingCanvas } from "features/DrawingCanvas";
 
@@ -13,7 +13,7 @@ export const PaintDeskPage = ({ className }: DeskProps) => {
     <div className={classNames(cls["desk"], className)}>
       <Navbar className={cls["desk-nav"]} />
       <section className={cls["desk-body"]}>
-        <ToolsMenu />
+        <Sidebar />
         <div className={cls["desk-resize-wrapper"]}>
           <DrawingCanvas />
         </div>

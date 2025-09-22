@@ -1,4 +1,3 @@
-import StyleDecorator from "./StyleDecorator/StyleDecorator";
-import { LocalStorageDecorator } from "./LocalStorageDecorator/LocalStorageDecorator";
+import { MobXDecorator } from "./MobXDecorator/MobXDecorator";
 
-export { StyleDecorator, LocalStorageDecorator };
+export { MobXDecorator };

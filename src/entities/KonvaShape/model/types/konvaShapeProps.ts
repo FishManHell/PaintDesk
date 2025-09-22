@@ -1,7 +1,7 @@
 import { Shape } from "entities/Shapes";
-import { ShapeDragHandlers } from "features/MobXKonvaShape";
+import { ShapeDragHandlers } from "entities/KonvaShape";
 
-export interface KonvaShapeProps extends ShapeDragHandlers {
+export interface KonvaShapeProps extends Partial<ShapeDragHandlers> {
   className?: string;
   shape: Shape;
 }

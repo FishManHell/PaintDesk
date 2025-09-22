@@ -1,8 +1,7 @@
 import { Line, Rect, Ellipse } from "react-konva";
-import { Reactive } from "shared/ui/Reactive";
 import { KonvaShapeProps } from "../model/types/konvaShapeProps";
 
-export const KonvaShape = Reactive((props: KonvaShapeProps) => {
+export const KonvaShape = (props: KonvaShapeProps) => {
   const { shape, onDragEnd, onMouseUp, onMouseDown } = props;
   const { stroke, strokeWidth, type } = shape;
 
@@ -71,4 +70,4 @@ export const KonvaShape = Reactive((props: KonvaShapeProps) => {
     default:
       return null;
   }
-});
+};

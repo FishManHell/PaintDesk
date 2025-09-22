@@ -2,9 +2,10 @@ import { Reactive } from "shared/ui/Reactive";
 import { useStore } from "app/providers/MobXProvider";
 import { MobXResizeContainer } from "features/MobXResizeContainer";
 import { CanvasLayer } from "shared/ui/CanvasLayer";
-import { MobXKonvaShape, useShapeDragHandlers } from "features/MobXKonvaShape";
 import { useDrawingCanvasHandlers } from "../hooks/useDrawingCanvasHandlers";
 import { useEffect } from "react";
+import { useShapeDragHandlers } from "entities/KonvaShape";
+import { MobXKonvaShape } from "features/MobXKonvaShape";
 
 export const DrawingCanvas = Reactive(() => {
   const { drawingStore, zoomStore } = useStore();

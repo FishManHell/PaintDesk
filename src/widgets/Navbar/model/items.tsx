@@ -15,8 +15,8 @@ export const items: MenuProps["items"] = [
     icon: <SearchOutlined />,
   },
   {
-    key: "drag",
-    label: "Drag",
+    key: "move",
+    label: "Move",
     icon: <DragOutlined />,
   },
   {

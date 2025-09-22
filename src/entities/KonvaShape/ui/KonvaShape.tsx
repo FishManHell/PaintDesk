@@ -15,6 +15,7 @@ export const KonvaShape = (props: KonvaShapeProps) => {
           strokeWidth={strokeWidth}
           lineCap="round"
           lineJoin="round"
+          hitStrokeWidth={5}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}
           onDragEnd={onDragEnd}
@@ -28,6 +29,7 @@ export const KonvaShape = (props: KonvaShapeProps) => {
           width={shape.width}
           height={shape.height}
           stroke={stroke}
+          hitStrokeWidth={5}
           strokeWidth={strokeWidth}
           onMouseDown={onMouseDown}
           onMouseUp={onMouseUp}

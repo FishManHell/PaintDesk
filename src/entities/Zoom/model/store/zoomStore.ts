@@ -19,7 +19,7 @@ export class ZoomStore {
   get isZoomMode() {
     return this._isZoomMode;
   }
-  toggleZoomMode() {
+  toggle() {
     this._isZoomMode = !this._isZoomMode;
   }
 

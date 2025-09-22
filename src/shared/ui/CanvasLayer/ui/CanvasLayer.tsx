@@ -1,9 +1,9 @@
 import Konva from "konva";
 import { ReactNode, useRef } from "react";
 import { Layer, Stage } from "react-konva";
-import { CanvasLayerHandlers } from "shared/types";
 import { useStore } from "app/providers/MobXProvider";
 import { Reactive } from "shared/ui/Reactive";
+import { CanvasLayerHandlers } from "features/DrawingCanvas";
 
 const MIN_SCALE = 1;
 

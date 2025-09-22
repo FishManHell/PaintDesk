@@ -17,8 +17,8 @@ export const Navbar = Reactive((props: NavbarProps) => {
     undo: () => drawingStore.undo(),
     redo: () => drawingStore.redo(),
     clear: () => drawingStore.reset(),
-    zoom: () => zoomStore.toggleZoomMode(),
-    drag: () => dragStore.toggle(),
+    zoom: () => zoomStore.toggle(),
+    move: () => dragStore.toggle(),
   };
 
   return (
@@ -30,7 +30,7 @@ export const Navbar = Reactive((props: NavbarProps) => {
         onClick={(e) => handlers[e.key] && handlers[e.key]()}
         selectedKeys={[
           ...(zoomStore._isZoomMode ? ["zoom"] : []),
-          ...(dragStore._isDragging ? ["drag"] : []),
+          ...(dragStore._isDragging ? ["move"] : []),
         ]}
       />
     </nav>

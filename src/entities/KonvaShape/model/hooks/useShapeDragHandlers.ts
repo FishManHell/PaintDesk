@@ -23,7 +23,6 @@ export const useShapeDragHandlers = (): ShapeDragHandlers => {
 
   const onDragEnd = (e: Konva.KonvaEventObject<DragEvent>) => {
     if (e.evt.button === 0 && dragStore._isDragging) {
-      console.log("New position:", e.target.x(), e.target.y());
       e.target.draggable(false);
     }
   };
